@@ -1,4 +1,6 @@
 use clap::{Parser, Subcommand};
+mod list;
+mod upload;
 
 #[derive(Parser)]
 #[command(name = "nlc")]
@@ -10,37 +12,27 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
+    /// List the files
+    List {
+        #[arg(short, long)]
+        path: String,
+    },
     /// Upload a file
     Upload {
         #[arg(short, long)]
-        file: String,
+        path: String,
     },
-    /// Hash a file
-    Hash {
-        #[arg(short, long)]
-        file: String,
-    },
-    /// Compute a Remote Execution Protocol
-    Compute {},
-    /// Issue the command to Nativelink
-    Issue {},
 }
 
 fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Upload { file } => {
-            println!("Uploading a file: {}", file);
+        Commands::List { path } => {
+            list::list_files(path.to_string());
         }
-        Commands::Hash { file } => {
-            println!("Hashing a file: {}", file);
-        }
-        Commands::Compute {} => {
-            println!("Computing a remote execution protocol");
-        }
-        Commands::Issue {} => {
-            println!("Issue the command to nativelink");
+        Commands::Upload { path } => {
+            upload::upload_files();
         }
     }
 }

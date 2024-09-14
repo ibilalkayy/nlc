@@ -1,6 +1,6 @@
 # NLC
 
-NLC (NativeLink CLI) is a simple command-line application that allows you to upload files using a subcommand-based interface. The project is built with Rust and uses the `clap` crate for argument parsing.
+NLC (NativeLink Client) is a simple command-line application that allows you to upload files using a subcommand-based interface. The project is built with Rust and uses the `clap` crate for argument parsing.
 
 ## Features
 
