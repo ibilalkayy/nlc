@@ -24,12 +24,13 @@ enum Commands {
     },
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
         Commands::List { path } => {
-            list::list_files(path.to_string());
+            list::list_files(path.to_string()).await;
         }
         Commands::Upload { path } => {
             upload::upload_files();
